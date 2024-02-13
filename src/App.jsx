@@ -1,6 +1,6 @@
-import HomePage from "./pages/HomePage"
-import LoginPage from "./pages/LoginPage"
-import RegisterPage from "./pages/RegisterPage"
+import { Bounce, ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 import Router from "./routes"
 
 
@@ -8,6 +8,19 @@ function App() {
   return (
     <>
       <Router />
+      <ToastContainer
+        position='bottom-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+        transition:Bounce
+      />
     </>
   )
 }
