@@ -2,7 +2,7 @@ import Joi from "joi";
 import validate from "../../../utility/validate";
 
 const loginSchema = Joi.object({
-  emailOrMobile: Joi.string().required().messages({
+  emailOrPhoneNumber: Joi.string().required().messages({
     "string.empty": "email or mobile is required",
     "any.required": "email or mobile is required",
   }),

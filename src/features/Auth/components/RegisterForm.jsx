@@ -24,6 +24,7 @@ export default function RegisterForm() {
 
 
     const handleChangeInput = e => {
+        setError({})
         setInput({ ...input, [e.target.name]: e.target.value })
         console.log(input)
     }
@@ -35,6 +36,7 @@ export default function RegisterForm() {
             return setError(validateError)
         }
         try {
+            delete input.confirmPassword
             await register(input);
             toast.success("Register Success")
         } catch (error) {
@@ -139,8 +141,6 @@ export default function RegisterForm() {
 
                         </div>
                     </div>
-
-
 
                     <div className="flex justify-center">
                         <Button background={"red"} width={"lg"} color={"white"}>
