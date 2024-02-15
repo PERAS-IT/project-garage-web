@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import CardComponent from "../components/CardComponents";
 import Header from "../layout/Header";
@@ -8,6 +8,22 @@ import Title from "../layout/Title";
 export default function HomePage() {
     return (
         <div>
+            <Header>
+                <div className=" flex justify-around gap-[10rem]">
+                    <div>Home</div>
+                    <div>Service</div>
+                    <Link to={'/register'}>
+                        <div>Register</div>
+                    </Link>
+                </div>
+                <div>
+                    <Link to={'/login'}>
+                        <Button background={"red"} width={"md"} color={"white"}>
+                            user login
+                        </Button>
+                    </Link>
+                </div>
+            </Header>
             <Title textTitle={"Professional Car Service Provide"} />
             <div className="text-center max-w-[1440] py-[4rem]">
                 <h1 className="text-[4rem]">Garage Service</h1>

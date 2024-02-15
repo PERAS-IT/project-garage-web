@@ -1,6 +1,7 @@
 import Button from "../components/Button";
 import CardComponent from "../components/CardComponents";
 import LoginForm from "../features/Auth/components/LoginForm";
+import { Link } from "react-router-dom";
 
 import Header from "../layout/Header";
 import Title from "../layout/Title";
@@ -15,7 +16,9 @@ export default function LoginPage() {
                 </CardComponent>
             </div>
             <div className="m-[4rem] text-center">
-                <Button width={"lg"}>HOME</Button>
+                <Link to={'/'}>
+                    <Button width={"lg"}>HOME</Button>
+                </Link>
             </div>
         </div>
     )

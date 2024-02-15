@@ -45,12 +45,19 @@ export default function LoginForm() {
                     <div className="py-3">
                         <h1 className="text-white text-center text-[2.5rem]">{isAdmin && "ADMIN"} LOG IN</h1>
                     </div>
-                    <Input
-                        placeholder={"Email address or mobile number"}
-                        value={input.emailOrPhoneNumber}
-                        name={"emailOrPhoneNumber"}
-                        onChange={handleChangeInput}
-                    ></Input>
+                    {isAdmin ?
+                        <Input
+                            placeholder={"Email address or mobile number"}
+                            value={input.userName}
+                            name={"userName"}
+                            onChange={handleChangeInput}
+                        ></Input> :
+                        <Input
+                            placeholder={"Email address or mobile number"}
+                            value={input.emailOrPhoneNumber}
+                            name={"emailOrPhoneNumber"}
+                            onChange={handleChangeInput}
+                        ></Input>}
                     <div className="text-end h-[2rem]">
                         {error.emailOrPhoneNumber ? (
                             <small className="text-red-400">{error.emailOrPhoneNumber}</small>
