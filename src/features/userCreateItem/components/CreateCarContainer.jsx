@@ -8,7 +8,6 @@ import CarCreateForm from './CarCreateForm'
 export default function CreateCarContainer() {
     const [isShow, setIsShow] = useState(false)
     const handleClick = () => {
-        console.log("1")
         setIsShow(true)
     }
     console.log(isShow)
@@ -21,6 +20,7 @@ export default function CreateCarContainer() {
                 </Button>
                 {isShow &&
                     <Modal
+                        width={40}
                         title={"Create Your Car"}
                         onClose={() => setIsShow(false)}
                     >

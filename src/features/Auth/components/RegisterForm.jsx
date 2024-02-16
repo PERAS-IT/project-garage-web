@@ -54,14 +54,16 @@ export default function RegisterForm() {
             <form onSubmit={handleFormSubmit}>
                 <div className=" flex flex-col gap-4">
                     <h1 className="text-white text-center text-[2.5rem]">Register</h1>
-                    <div className=" flex flex-col item-center justify-center">
+                    <div className=" flex flex-col item-center justify-center " >
                         <Input
                             placeholder={"First Name"}
                             value={input.firstName}
                             name={"firstName"}
                             onChange={handleChangeInput}
+                            width={25}
+                            error={input.firstName}
                         ></Input>
-                        <div className="text-end h-[1.5rem]">
+                        <div className="text-center h-[1.5rem]">
                             {error.firstName ? (
                                 <small className="text-red-400">{error.firstName}</small>
                             ) : null}
@@ -75,8 +77,10 @@ export default function RegisterForm() {
                             value={input.lastName}
                             name={"lastName"}
                             onChange={handleChangeInput}
+                            width={25}
+                            error={input.lastName}
                         ></Input>
-                        <div className="text-end h-[1.5rem]">
+                        <div className="text-center h-[1.5rem]">
                             {error.lastName ? (
                                 <small className="text-red-400">{error.lastName}</small>
                             ) : null}
@@ -89,8 +93,10 @@ export default function RegisterForm() {
                             value={input.email}
                             name={"email"}
                             onChange={handleChangeInput}
+                            width={25}
+                            error={input.email}
                         ></Input>
-                        <div className="text-end h-[1.5rem]">
+                        <div className="text-center h-[1.5rem]">
                             {error.email ? (
                                 <small className="text-red-400">{error.email}</small>
                             ) : null}
@@ -103,8 +109,9 @@ export default function RegisterForm() {
                             value={input.phoneNumber}
                             name={"phoneNumber"}
                             onChange={handleChangeInput}
+                            width={25}
                         ></Input>
-                        <div className="text-end h-[1.5rem]">
+                        <div className="text-center h-[1.5rem]">
                             {error.phoneNumber ? (
                                 <small className="text-red-400">{error.phoneNumber}</small>
                             ) : null}
@@ -118,8 +125,9 @@ export default function RegisterForm() {
                             name={"password"}
                             onChange={handleChangeInput}
                             type="password"
+                            width={25}
                         ></Input>
-                        <div className="text-end h-[1.5rem]">
+                        <div className="text-center h-[1.5rem]">
                             {error.password ? (
                                 <small className="text-red-400">{error.password}</small>
                             ) : null}
@@ -133,6 +141,8 @@ export default function RegisterForm() {
                             name={"confirmPassword"}
                             onChange={handleChangeInput}
                             type="password"
+                            width={25}
+                            error={input.confirmPassword}
                         ></Input>
                         <div className="text-center h-[1.5rem]">
                             {error.confirmPassword ? (

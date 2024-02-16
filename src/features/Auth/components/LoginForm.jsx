@@ -47,16 +47,20 @@ export default function LoginForm() {
                     </div>
                     {isAdmin ?
                         <Input
-                            placeholder={"Email address or mobile number"}
+                            placeholder={"user name"}
                             value={input.userName}
                             name={"userName"}
                             onChange={handleChangeInput}
+                            width={25}
+                            error={error.userName}
                         ></Input> :
                         <Input
                             placeholder={"Email address or mobile number"}
                             value={input.emailOrPhoneNumber}
                             name={"emailOrPhoneNumber"}
                             onChange={handleChangeInput}
+                            width={25}
+                            error={error.emailOrPhoneNumber}
                         ></Input>}
                     <div className="text-end h-[2rem]">
                         {error.emailOrPhoneNumber ? (
@@ -69,6 +73,8 @@ export default function LoginForm() {
                         name={"password"}
                         onChange={handleChangeInput}
                         type="password"
+                        width={25}
+                        error={input.password}
                     ></Input>
                     <div className="text-end h-[2rem]">
                         {error.password ? (
