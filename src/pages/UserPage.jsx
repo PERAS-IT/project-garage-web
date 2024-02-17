@@ -17,7 +17,7 @@ export default function UserPage() {
                     </Button>
                 </Link>
             </Header>
-            <Title />
+            <Title textTitle={'Your Garage'} />
             <CarActionContextProvider>
                 <CreateCarContainer />
             </CarActionContextProvider>

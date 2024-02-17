@@ -6,11 +6,12 @@ import Modal from '../../../components/Modal'
 import CarCreateForm from './CarCreateForm'
 
 export default function CreateCarContainer() {
-    const [isShow, setIsShow] = useState(false)
+    const [isShowCreate, setIsShowCreate] = useState(false)
+
     const handleClick = () => {
-        setIsShow(true)
+        setIsShowCreate(true)
     }
-    console.log(isShow)
+
     return (
         <>
 
@@ -18,13 +19,13 @@ export default function CreateCarContainer() {
                 <Button className='z-50' width={"lg"} background={"red"} color={"white"} onClick={handleClick}>
                     Add Your car
                 </Button>
-                {isShow &&
+                {isShowCreate &&
                     <Modal
-                        width={40}
+                        width={60}
                         title={"Create Your Car"}
-                        onClose={() => setIsShow(false)}
+                    // onClose={() => setIsShowCrate(false)}
                     >
-                        <CarCreateForm onClose={() => setIsShow(false)} />
+                        <CarCreateForm onClose={() => setIsShowCreate(false)} />
                     </Modal>
                 }
                 <CarCardContainer />

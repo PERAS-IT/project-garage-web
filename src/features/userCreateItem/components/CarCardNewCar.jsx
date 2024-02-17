@@ -5,22 +5,29 @@ import { RiDeleteBin3Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import { BsClockHistory } from "react-icons/bs";
 import Button from '../../../components/Button';
-import carMocUp from '../../../assets/car1.png'
+import { useState } from 'react';
+import CarDeleteForm from './CarDeleteForm';
+import Modal from '../../../components/Modal';
+import CarRequestForm from './CarRequestForm';
 
-export default function CarCardNewCar() {
+export default function CarCardNewCar({ car }) {
+    const [isEdit, setIsEdit] = useState(false)
+    const [isShowDelete, setIsShowDelete] = useState(false)
+    const [isShowRequest, setIsShowRequest] = useState(false)
+
     return (
         <>
             <CardComponent width={60}>
                 <div className='flex gap-[9rem]'>
                     <div className='size-[13rem] flex flex-col gap-2'>
-                        <img src={carMocUp} alt="" />
+                        <img src={car.image} alt="car-image" />
                     </div>
                     <div className='size-[13rem] flex flex-col items-start gap-3'>
-                        <span className='text-md'>Model type 3</span>
-                        <span className='text-md'>Year : 2014</span>
-                        <span className='text-md'>Brand : BMX</span>
-                        <span className='text-md'>Plate Number : 111111</span>
-                        <span className='text-md'>Province : Bangkok</span>
+                        <span className='text-md'>Model : {car.model}</span>
+                        <span className='text-md'>Year : {car.year} </span>
+                        <span className='text-md'>Brand : {car.brand}</span>
+                        <span className='text-md'>Plate Number : {car.plateNumber}</span>
+                        <span className='text-md'>Province : {car.province}</span>
                     </div>
                     <div >
                         <FiEdit className='cursor-pointer' />
@@ -31,17 +38,33 @@ export default function CarCardNewCar() {
                         Car history
                         <BsClockHistory />
                     </Button>
-                    <Button background='blue'>
+                    <Button background='blue' onClick={() => setIsShowRequest(!isShowRequest)}>
                         Request Service
                         <IoSettingsOutline />
 
                     </Button>
-                    <Button background='red'>
+                    <Button background='red' onClick={() => setIsShowDelete(!isShowDelete)}>
                         Remove Car
                         <RiDeleteBin3Line />
                     </Button>
                 </div>
             </CardComponent>
+            {isShowDelete &&
+                <Modal
+                    width={50}
+                    title={"Please Make Sure For Delete"}
+                >
+                    <CarDeleteForm onClose={() => setIsShowDelete(false)} car={car} />
+                </Modal>
+            }
+            {isShowRequest &&
+                <Modal
+                    width={40}
+                    title={"Please Make sure for delete"}
+                >
+                    <CarRequestForm onClose={() => setIsShowRequest(false)} car={car} />
+                </Modal>
+            }
         </>
 
     )

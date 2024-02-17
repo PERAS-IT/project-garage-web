@@ -28,7 +28,7 @@ export default function Modal({ title, children, onClose, width }) {
                         <div className='border-b flex justify-center p-4 items-center'>
                             <div>
                                 {/* title */}
-                                <h1>{title}</h1>
+                                <h1 className='text-3xl'>{title}</h1>
                             </div>
                         </div>
                         {children}
