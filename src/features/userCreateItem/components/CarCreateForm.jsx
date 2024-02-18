@@ -9,7 +9,7 @@ import Spinner from '../../../components/Spinner';
 import useCarAction from '../hooks/car-action';
 
 const defaultData = {
-    brand: "",
+    brand: "other",
     model: "",
     year: "",
     plateNumber: "",

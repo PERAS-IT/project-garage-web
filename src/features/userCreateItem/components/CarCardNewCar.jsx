@@ -9,12 +9,19 @@ import { useState } from 'react';
 import CarDeleteForm from './CarDeleteForm';
 import Modal from '../../../components/Modal';
 import CarRequestForm from './CarRequestForm';
+import CarEditForm from './CarEditForm';
 
 export default function CarCardNewCar({ car }) {
-    const [isEdit, setIsEdit] = useState(false)
+    const [isEdit, setIsEdit] = useState(true)
     const [isShowDelete, setIsShowDelete] = useState(false)
     const [isShowRequest, setIsShowRequest] = useState(false)
 
+    const handleEdit = () => {
+        setIsEdit(!isEdit)
+    }
+    const handleChange = (e) => {
+
+    }
     return (
         <>
             <CardComponent width={60}>
@@ -23,22 +30,34 @@ export default function CarCardNewCar({ car }) {
                         <img src={car.image} alt="car-image" />
                     </div>
                     <div className='size-[13rem] flex flex-col items-start gap-3'>
-                        <span className='text-md'>Model : {car.model}</span>
-                        <span className='text-md'>Year : {car.year} </span>
-                        <span className='text-md'>Brand : {car.brand}</span>
-                        <span className='text-md'>Plate Number : {car.plateNumber}</span>
-                        <span className='text-md'>Province : {car.province}</span>
+                        {isEdit ?
+                            (
+                                <>
+                                    <span className='text-md'>Model : {car.model}</span>
+                                    <span className='text-md'>Year : {car.year} </span>
+                                    <span className='text-md'>Brand : {car.brand}</span>
+                                    <span className='text-md'>Plate Number : {car.plateNumber}</span>
+                                    <span className='text-md'>Province : {car.province}</span>
+
+                                </>
+                            ) : (
+                                <CarEditForm car={car} onclose={() => setIsEdit(!isEdit)} />
+                            )}
                     </div>
                     <div >
-                        <FiEdit className='cursor-pointer' />
+                        {isEdit && <FiEdit className='cursor-pointer' onClick={() => setIsEdit(!isEdit)} />}
                     </div>
                 </div>
                 <div className='flex justify-between gap-[6rem]'>
-                    <Button background='yellow' className="bg-yellow-500">
+                    <Button
+                        background='yellow'
+                        className="bg-yellow-500">
                         Car history
                         <BsClockHistory />
                     </Button>
-                    <Button background='blue' onClick={() => setIsShowRequest(!isShowRequest)}>
+                    <Button
+                        background='blue'
+                        onClick={() => setIsShowRequest(!isShowRequest)}>
                         Request Service
                         <IoSettingsOutline />
 
@@ -48,21 +67,26 @@ export default function CarCardNewCar({ car }) {
                         <RiDeleteBin3Line />
                     </Button>
                 </div>
-            </CardComponent>
+            </CardComponent >
             {isShowDelete &&
                 <Modal
                     width={50}
                     title={"Please Make Sure For Delete"}
                 >
-                    <CarDeleteForm onClose={() => setIsShowDelete(false)} car={car} />
+                    <CarDeleteForm
+                        onClose={() => setIsShowDelete(false)}
+                        car={car} />
                 </Modal>
             }
-            {isShowRequest &&
+            {
+                isShowRequest &&
                 <Modal
                     width={40}
                     title={"Please Make sure for delete"}
                 >
-                    <CarRequestForm onClose={() => setIsShowRequest(false)} car={car} />
+                    <CarRequestForm
+                        onClose={() => setIsShowRequest(false)}
+                        car={car} />
                 </Modal>
             }
         </>

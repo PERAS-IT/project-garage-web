@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
     const [AuthUser, setAuthUser] = useState(null)
+    const [AuthAdmin, setAuthAdmin] = useState(null)
     const [initialLoading, setInitialLoading] = useState(true)
 
     const register = async (user) => {

@@ -12,8 +12,7 @@ export default function CarDeleteForm({ onClose, car }) {
     const { deleteCar } = useCarAction();
     const [loading, setLoading] = useState(false)
 
-    const handleSubmitDelete = async (e) => {
-        e.preventDefault();
+    const handleDelete = async () => {
         try {
             setLoading(true)
             await deleteCar(car.id)
@@ -37,7 +36,7 @@ export default function CarDeleteForm({ onClose, car }) {
                 <Button onClick={onClose} type={"button"}>
                     Cancel
                 </Button>
-                <Button background={"green"} onClick={handleSubmitDelete} >
+                <Button background={"green"} onClick={handleDelete} >
                     Delete
                 </Button>
             </div>

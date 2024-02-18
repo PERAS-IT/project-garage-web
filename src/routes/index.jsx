@@ -6,6 +6,8 @@ import Container from '../layout/Container'
 import RegisterPage from '../pages/RegisterPage'
 import { RouterProvider } from 'react-router-dom'
 import UserPage from '../pages/UserPage'
+import AdminHomePage from '../pages/AdminHomePage'
+import ProtectedRoute from '../features/Auth/components/ProtectedRoute'
 
 const router = createBrowserRouter([
 
@@ -25,14 +27,26 @@ const router = createBrowserRouter([
                 path: `/`, element: <HomePage />
             },
             {
-                path: '/login', element: <LoginPage />
-            },
-            {
                 path: '/Register', element: <RegisterPage />
             },
             {
-                path: '/user', element: <UserPage />
-            }
+                path: '/login',
+                element: (
+                    <ProtectedRoute>
+                        <LoginPage />
+
+                    </ProtectedRoute>
+                ),
+                children: [
+                    {
+                        path: '/user', element: <UserPage />
+                    },
+                    {
+                        path: '/admin', element: <AdminHomePage />
+                    }
+                ]
+            },
+
         ]
 
     }

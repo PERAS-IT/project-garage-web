@@ -23,6 +23,7 @@ export default function CarActionContextProvider({ children }) {
     }, [])
 
     const createCar = async formData => {
+        console.log(formData.getAll("data"))
         await userCarApi.createCar(formData);
         fetchData()
     }
@@ -41,10 +42,6 @@ export default function CarActionContextProvider({ children }) {
         await userCarApi.editCar(id, newProfileObj)
         fetchData()
     }
-
-
-
-
 
 
     return (

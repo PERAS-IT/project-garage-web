@@ -7,16 +7,18 @@ import Spinner from '../../../components/Spinner';
 import useCarAction from '../hooks/car-action';
 
 const defaultValue = {
-    categoryService: "",
+    categoryService: "general",
     mileStoneNumber: "",
     detailRequest: ""
 }
+
 
 
 export default function CarRequestForm({ onClose, car }) {
     const { requestServiceById } = useCarAction();
     const [loading, setLoading] = useState(false)
     const [input, setInput] = useState(defaultValue)
+    const categoryService = ["general", "accident"]
 
     const handleChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
@@ -41,13 +43,16 @@ export default function CarRequestForm({ onClose, car }) {
             {loading && <Spinner />}
             <form onSubmit={handleSubmitRequest}>
                 <div className='flex flex-col p-8 gap-4'>
-                    <label >Category Service</label>
-                    <input
-                        className='py-2 px-4 rounded-xl mt-2'
-                        type="text"
-                        onChange={handleChange}
+                    <select
+                        name="categoryService"
+                        className='p-3 rounded-lg'
                         value={input.categoryService}
-                        name='categoryService' />
+                        onChange={handleChange}
+                    >
+
+                        {categoryService.map((el, i) => <option key={i} value={el}>{el}</option>)}
+
+                    </select>
                     <label >Detail request Service</label>
                     <textarea
                         className='rounded-xl px-4 py-3 resize-none'
@@ -62,8 +67,8 @@ export default function CarRequestForm({ onClose, car }) {
                         className='py-2 px-4 rounded-xl mt-2'
                         type="text"
                         onChange={handleChange}
-                        value={input.plateNumber}
-                        name='plateNumber' />
+                        value={input.mileStoneNumber}
+                        name='mileStoneNumber' />
                 </div>
 
                 <div className='flex flex-col w-full justify-center py-[2rem] gap-[1rem]'>
