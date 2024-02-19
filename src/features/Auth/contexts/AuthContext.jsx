@@ -23,7 +23,7 @@ export default function AuthContextProvider({ children }) {
 
     const loginAdmin = async (credential) => {
         const result = await authApi.loginAdmin(credential)
-        setAuthUser(result.data.user);
+        setAuthAdmin(result.data.user);
         storeToken(result.data.accessToken)
     }
     return (

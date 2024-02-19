@@ -8,6 +8,7 @@ import { RouterProvider } from 'react-router-dom'
 import UserPage from '../pages/UserPage'
 import AdminHomePage from '../pages/AdminHomePage'
 import ProtectedRoute from '../features/Auth/components/ProtectedRoute'
+import RedirectIfAuthenticatedUser from '../features/Auth/components/RedirectIfAuthenticatedUser'
 
 const router = createBrowserRouter([
 
@@ -18,39 +19,34 @@ const router = createBrowserRouter([
         )
     },
     {
+        path: `/`, element: <HomePage />
+    },
+    {
+        path: '/Register', element: <RegisterPage />
+    },
+    {
+        path: '/login',
+        element: (
+            <RedirectIfAuthenticatedUser>
+                <LoginPage />
+            </RedirectIfAuthenticatedUser>
+        )
+    },
+    {
         path: `/`,
         element: (
             <Container />
         ),
         children: [
-            {
-                path: `/`, element: <HomePage />
-            },
-            {
-                path: '/Register', element: <RegisterPage />
-            },
-            {
-                path: '/login',
-                element: (
-                    <ProtectedRoute>
-                        <LoginPage />
 
-                    </ProtectedRoute>
-                ),
-                children: [
-                    {
-                        path: '/user', element: <UserPage />
-                    },
-                    {
-                        path: '/admin', element: <AdminHomePage />
-                    }
-                ]
+            {
+                path: '/user', element: <UserPage />
             },
-
+            {
+                path: '/admin', element: <AdminHomePage />
+            },
         ]
-
-    }
-])
+    }])
 
 
 export default function Router() {
