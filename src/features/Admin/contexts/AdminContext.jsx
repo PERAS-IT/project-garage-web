@@ -17,9 +17,9 @@ export default function AdminContextProvider({ children }) {
     const fetchRequest = async () => {
         try {
             const resultList = await adminApi.getRequestList()
-            setRequestList(resultList)
-            const resultInSevenDay = await adminApi.getRequestInSevenDay();
-            setRequestSevenDay(resultInSevenDay)
+            setRequestList(resultList.data.result)
+            // const resultInSevenDay = await adminApi.getRequestInSevenDay();
+            // setRequestSevenDay(resultInSevenDay)
         } catch (error) {
             console.log(error)
         }
@@ -28,9 +28,10 @@ export default function AdminContextProvider({ children }) {
     const fetchService = async () => {
         try {
             const resultList = await adminApi.getServiceList();
-            setServiceList(resultList)
-            const resultInSevenDay = await adminApi.getServiceInSevenDay();
-            setServiceSevenDay(resultInSevenDay)
+            console.log(resultList.data.result)
+            setServiceList(resultList.data.result)
+            // const resultInSevenDay = await adminApi.getServiceInSevenDay();
+            // setServiceSevenDay(resultInSevenDay)
         } catch (error) {
             console.log(error)
         }
@@ -38,36 +39,68 @@ export default function AdminContextProvider({ children }) {
     const fetchComplete = async () => {
         try {
             const resultList = await adminApi.getCompleteList();
-            setCompleteList(resultList)
-            const resultInSevenDay = await adminApi.getCompleteInSevenDay();
-            setCompleteSevenDay(resultInSevenDay)
+            setCompleteList(resultList.data.result)
+            // const resultInSevenDay = await adminApi.getCompleteInSevenDay();
+            // setCompleteSevenDay(resultInSevenDay)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const fetchSevenDay = async () => {
+        try {
+            const chartListRequest = await adminApi.getRequestInSevenDay();
+            const chartListService = await adminApi.getServiceInSevenDay();
+            const chartListComplete = await adminApi.getCompleteInSevenDay();
+            setRequestSevenDay(chartListRequest.data.result)
+            setServiceSevenDay(chartListService.data.result)
+            setCompleteSevenDay(chartListService.data.result)
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
-        fetchRequest()
-        fetchService()
-        fetchComplete()
+        if (requestList.length === 0) { fetchRequest() }
+        if (serviceList.length === 0) { fetchService() }
+        if (completeList.length === 0) { fetchComplete() }
+        fetchSevenDay()
     }, [])
 
 
-    const handleUpdateRequest = async (orderId) => {
+    const updateRequest = async (orderId) => {
         await adminApi.updateRequestService(orderId)
         fetchRequest()
-    }
-    const handleUpdateService = async (orderId) => {
-        await adminApi.updateRequestService(orderId)
         fetchService()
+        fetchSevenDay()
     }
-    const handleUpdateComplete = async (orderId) => {
-        await adminApi.updateRequestService(orderId)
+    const updateService = async (orderId) => {
+        await adminApi.updateService(orderId)
+        fetchService()
         fetchComplete()
+        fetchSevenDay()
+    }
+    const updateComplete = async (orderId) => {
+        await adminApi.updateComplete(orderId)
+        fetchComplete()
+        fetchSevenDay()
     }
 
+
     return (
-        <AdminContext.Provider value={handleUpdateRequest}>
+        <AdminContext.Provider
+            value={{
+                requestList,
+                serviceList,
+                completeList,
+                updateRequest,
+                updateService,
+                updateComplete,
+                requestSevenDay,
+                serviceSevenDay,
+                completeSevenDat
+
+            }}>
             {children}
         </AdminContext.Provider>
     )

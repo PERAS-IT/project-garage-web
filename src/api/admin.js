@@ -9,6 +9,9 @@ export const updateService = (orderId) =>
 export const updateComplete = (orderId) =>
   axios.patch(`/admin/complete/${orderId}`);
 
+export const updateReject = (orderId) =>
+  axios.patch(`/admin/reject/${orderId}`);
+
 export const getRequestList = () => axios.get("/admin/getAllRequestList");
 export const getServiceList = () => axios.get("/admin/getAllServiceList");
 export const getCompleteList = () => axios.get("/admin/getAllCompleteList");

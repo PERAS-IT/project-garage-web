@@ -23,7 +23,6 @@ export default function CreateCarContainer() {
                     <Modal
                         width={60}
                         title={"Create Your Car"}
-                    // onClose={() => setIsShowCrate(false)}
                     >
                         <CarCreateForm onClose={() => setIsShowCreate(false)} />
                     </Modal>

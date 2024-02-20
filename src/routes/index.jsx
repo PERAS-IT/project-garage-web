@@ -9,6 +9,7 @@ import UserPage from '../pages/UserPage'
 import AdminHomePage from '../pages/AdminHomePage'
 import ProtectedRoute from '../features/Auth/components/ProtectedRoute'
 import RedirectIfAuthenticatedUser from '../features/Auth/components/RedirectIfAuthenticatedUser'
+import AdminContextProvider from '../features/Admin/contexts/AdminContext'
 
 const router = createBrowserRouter([
 
@@ -27,9 +28,9 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: (
-            <RedirectIfAuthenticatedUser>
-                <LoginPage />
-            </RedirectIfAuthenticatedUser>
+            <LoginPage />
+            // <RedirectIfAuthenticatedUser>
+            // </RedirectIfAuthenticatedUser>
         )
     },
     {
@@ -43,7 +44,11 @@ const router = createBrowserRouter([
                 path: '/user', element: <UserPage />
             },
             {
-                path: '/admin', element: <AdminHomePage />
+                path: '/admin', element: (
+                    <AdminContextProvider>
+                        <AdminHomePage />
+                    </AdminContextProvider>
+                )
             },
         ]
     }])

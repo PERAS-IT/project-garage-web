@@ -4,7 +4,8 @@ const backgroundClass = {
     red: "bg-red-600 hover:bg-red-500",
     yellow: "bg-yellow-500 hover:bg-yellow-400",
     blue: "bg-blue-500 hover:bg-blue-400",
-    green: "bg-[#26AEB7] hover:bg-[#44D9E3]"
+    green: "bg-[#26AEB7] hover:bg-[#44D9E3]",
+    light_green: "bg-[#9AD9A0] hover:bg-[#bfdec2]"
 }
 
 const colorClass = {
@@ -17,7 +18,7 @@ const widthClass = {
     md: "w-[7rem]",
     sm: "w-[4rem]"
 }
-export default function Button({ background, width, color, onClick, children, type }) {
+export default function Button({ background, width, color, onClick = null, children, type }) {
     const classes = `
     ${background ? backgroundClass[background] : ""}
     ${color ? colorClass[color] : ""}
@@ -25,7 +26,7 @@ export default function Button({ background, width, color, onClick, children, ty
 
     return (
         <div>
-            <button className={`btn rounded-full ${classes}`} onClick={() => { onClick() }} type={type}>{children}</button>
+            <button className={`btn rounded-full ${classes}`} onClick={onClick} type={type}>{children}</button>
         </div>
     );
 }
