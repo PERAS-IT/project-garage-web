@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import axios from "../config/axios";
 
 export const updateRequestService = (orderId) =>
@@ -22,3 +23,9 @@ export const getServiceInSevenDay = () =>
   axios.get("/admin/getServiceInSevenDay");
 export const getCompleteInSevenDay = () =>
   axios.get("/admin/getCompleteInSevenDay");
+
+// get list order
+export const searchListOrder = (startDate, endDate) =>
+  axios.get(`admin/${startDate}/${endDate}`);
+// get  list history
+export const getListHistory = (data) => axios.get("/admin/history", data);

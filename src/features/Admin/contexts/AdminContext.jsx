@@ -12,7 +12,7 @@ export default function AdminContextProvider({ children }) {
     const [serviceList, setServiceList] = useState([]);
     const [serviceSevenDay, setServiceSevenDay] = useState([]);
     const [completeList, setCompleteList] = useState([]);
-    const [completeSevenDat, setCompleteSevenDay] = useState([])
+    const [completeSevenDay, setCompleteSevenDay] = useState([])
 
     const fetchRequest = async () => {
         try {
@@ -54,7 +54,7 @@ export default function AdminContextProvider({ children }) {
             const chartListComplete = await adminApi.getCompleteInSevenDay();
             setRequestSevenDay(chartListRequest.data.result)
             setServiceSevenDay(chartListService.data.result)
-            setCompleteSevenDay(chartListService.data.result)
+            setCompleteSevenDay(chartListComplete.data.result)
         } catch (error) {
             console.log(error)
         }
@@ -98,7 +98,7 @@ export default function AdminContextProvider({ children }) {
                 updateComplete,
                 requestSevenDay,
                 serviceSevenDay,
-                completeSevenDat
+                completeSevenDay
 
             }}>
             {children}

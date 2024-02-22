@@ -1,7 +1,8 @@
 const backgroundClass = {
     white: "bg-white hover:bg-gray-100",
     black: "bg-[#122729]",
-    yellow: "bg-yellow-500 hover:bg-yellow-400"
+    yellow: "bg-yellow-500 hover:bg-yellow-400",
+    gray: "bg-gray-300"
 }
 
 const colorClass = {

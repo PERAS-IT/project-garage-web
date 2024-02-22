@@ -10,6 +10,9 @@ import AdminHomePage from '../pages/AdminHomePage'
 import ProtectedRoute from '../features/Auth/components/ProtectedRoute'
 import RedirectIfAuthenticatedUser from '../features/Auth/components/RedirectIfAuthenticatedUser'
 import AdminContextProvider from '../features/Admin/contexts/AdminContext'
+import ProtectedRouteAdmin from '../features/Auth/components/ProtextRouteAdmin'
+import RedirectIfAuthenticatedAdmin from '../features/Auth/components/RedirectIfAuthenticatedAdmin'
+import SearchOrderContextProvider from '../features/Admin/page2/contexts/SearchOrderContext'
 
 const router = createBrowserRouter([
 
@@ -28,8 +31,10 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: (
-            <LoginPage />
             // <RedirectIfAuthenticatedUser>
+            // <RedirectIfAuthenticatedAdmin>
+            <LoginPage />
+            // </RedirectIfAuthenticatedAdmin>
             // </RedirectIfAuthenticatedUser>
         )
     },
@@ -41,13 +46,21 @@ const router = createBrowserRouter([
         children: [
 
             {
-                path: '/user', element: <UserPage />
+                path: '/user', element: (
+                    // <ProtectedRoute>
+                    <UserPage />
+                    // </ProtectedRoute>
+                )
             },
             {
                 path: '/admin', element: (
+                    // <ProtectedRouteAdmin>
                     <AdminContextProvider>
-                        <AdminHomePage />
+                        <SearchOrderContextProvider>
+                            <AdminHomePage />
+                        </SearchOrderContextProvider>
                     </AdminContextProvider>
+                    // </ProtectedRouteAdmin>
                 )
             },
         ]

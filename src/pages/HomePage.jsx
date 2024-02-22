@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import LoginPic from '../assets/LoginPic.png'
+import RegisterPic from '../assets/RegisterPic.png'
+import CarService from '../assets/CarService.png'
+import CustomerFeedback from '../assets/CustomerFeedback.png'
 import Button from "../components/Button";
 import CardComponent from "../components/CardComponents";
 import Header from "../layout/Header";
@@ -29,20 +33,20 @@ export default function HomePage() {
                 <h1 className="text-[4rem]">Garage Service</h1>
                 <div className='flex flex-wrap justify-center gap-[4rem] p-[3rem]'>
                     <CardComponent bg={"white"} width={22} height={28} title={"login"} >
-                        <img src={""} alt="" className="bg-white w-[190px] h-[250px]" />
-                        <span className="text-orange-500 text-2xl">login</span>
+                        <img src={LoginPic} alt="" className="bg-white w-[250px] h-[250px]" />
+                        <span className="text-orange-500 text-3xl">login</span>
                     </CardComponent>
                     <CardComponent bg={"white"} width={22} height={28} title={"login"} >
-                        <img src={""} alt="" className="bg-white w-[190px] h-[250px]" />
-                        <span className="text-orange-500 text-2xl">Register for Booking</span>
+                        <img src={RegisterPic} alt="" className="bg-white w-[250px] h-[250px]" />
+                        <span className="text-orange-500 text-3xl">Register for Booking</span>
                     </CardComponent>
                     <CardComponent bg={"white"} width={22} height={28} title={"login"} >
-                        <img src={""} alt="" className="bg-white w-[190px] h-[250px]" />
-                        <span className="text-orange-500 text-2xl">Car Service</span>
+                        <img src={CarService} alt="" className="bg-white w-[250px] h-[250px]" />
+                        <span className="text-orange-500 text-3xl">Car Service</span>
                     </CardComponent>
                     <CardComponent bg={"white"} width={22} height={28} title={"login"} >
-                        <img src={""} alt="" className="bg-white w-[190px] h-[250px]" />
-                        <span className="text-orange-500 text-2xl">Customer Feedback</span>
+                        <img src={CustomerFeedback} alt="" className="bg-white w-[250px] h-[250px]" />
+                        <span className="text-orange-500 text-3xl">Customer Feedback</span>
                     </CardComponent>
 
                 </div>
