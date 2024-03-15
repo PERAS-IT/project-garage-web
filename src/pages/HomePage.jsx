@@ -14,11 +14,11 @@ export default function HomePage() {
         <div>
             <Header>
                 <div className=" flex justify-around gap-[10rem]">
-                    <div>Home</div>
-                    <div>Service</div>
-                    <Link to={'/register'}>
+                    {/* <div>Home</div> */}
+                    {/* <div>Service</div> */}
+                    {/* <Link to={'/register'}>
                         <div>Register</div>
-                    </Link>
+                    </Link> */}
                 </div>
                 <div>
                     <Link to={'/login'}>
@@ -32,22 +32,26 @@ export default function HomePage() {
             <div className="text-center max-w-[1440] py-[4rem]">
                 <h1 className="text-[4rem]">Garage Service</h1>
                 <div className='flex flex-wrap justify-center gap-[4rem] p-[3rem]'>
-                    <CardComponent bg={"white"} width={22} height={28} title={"login"} >
-                        <img src={LoginPic} alt="" className="bg-white w-[250px] h-[250px]" />
-                        <span className="text-orange-500 text-3xl">login</span>
-                    </CardComponent>
-                    <CardComponent bg={"white"} width={22} height={28} title={"login"} >
-                        <img src={RegisterPic} alt="" className="bg-white w-[250px] h-[250px]" />
-                        <span className="text-orange-500 text-3xl">Register for Booking</span>
-                    </CardComponent>
-                    <CardComponent bg={"white"} width={22} height={28} title={"login"} >
+                    <Link to={'/login'}>
+                        <CardComponent bg={"white"} width={22} height={28} title={"login"} >
+                            <img src={LoginPic} alt="" className="bg-white w-[250px] h-[250px]" />
+                            <span className="text-orange-500 text-3xl">login</span>
+                        </CardComponent>
+                    </Link>
+                    <Link to={'/register'}>
+                        <CardComponent bg={"white"} width={22} height={28} title={"login"} >
+                            <img src={RegisterPic} alt="" className="bg-white w-[250px] h-[250px]" />
+                            <span className="text-orange-500 text-3xl">Register for Booking</span>
+                        </CardComponent>
+                    </Link>
+                    {/* <CardComponent bg={"white"} width={22} height={28} title={"login"} >
                         <img src={CarService} alt="" className="bg-white w-[250px] h-[250px]" />
                         <span className="text-orange-500 text-3xl">Car Service</span>
                     </CardComponent>
                     <CardComponent bg={"white"} width={22} height={28} title={"login"} >
                         <img src={CustomerFeedback} alt="" className="bg-white w-[250px] h-[250px]" />
                         <span className="text-orange-500 text-3xl">Customer Feedback</span>
-                    </CardComponent>
+                    </CardComponent> */}
 
                 </div>
 

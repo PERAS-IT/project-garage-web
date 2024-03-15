@@ -1,10 +1,10 @@
 import React from 'react'
-import useSearchOrder from '../hooks/useSearchOrder'
-import ListInTable from './ListInTable'
+import useSearchHistory from '../hooks/useSearchHistory'
+import ListHistoryTable from './ListHistoryTable'
 
 
-export default function TableOrder() {
-    const { listOfOrder } = useSearchOrder()
+export default function TableHistory() {
+    const { listOfHistory } = useSearchHistory()
     return (
         <>
             <div className="overflow-x-auto h-[20rem] m-[5rem]">
@@ -16,23 +16,21 @@ export default function TableOrder() {
                             <th>Plate Number</th>
                             <th>brand</th>
                             <th>Model</th>
-                            <th>Category service</th>
-                            <th>Detail Request</th>
-                            <th>status order</th>
-                            <th>Request Service Date</th>
+                            <th>Engine Service</th>
+                            <th>Fluid Service</th>
+                            <th>BodyService</th>
+                            <th>Electrical Service</th>
+                            <th>breakService</th>
+                            <th>Suspension And Wheel Service</th>
+                            <th>CreatedAt</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody className='overflow-y-hidden'>
-                        {listOfOrder.map((list, i) => <ListInTable key={i} list={list} index={i} />)}
+                        {listOfHistory.map((list, i) => <ListHistoryTable key={i} listHistory={list} index={i} />)}
                     </tbody>
                 </table>
             </div>
-            {/* {listOfOrder.length > 0
-                &&
-                } */}
-            {/* {listOfOrder.map((order) => <ListInTable />)} */}
         </>
-
     )
 }

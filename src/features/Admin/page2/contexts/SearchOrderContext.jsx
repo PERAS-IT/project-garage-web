@@ -7,16 +7,24 @@ export const SearchContext = createContext()
 
 export default function SearchOrderContextProvider({ children }) {
   const [listOfOrder, setListOfOrder] = useState([])
+  const [dateForSearch, setDateForSearch] = useState()
 
+  const fetchData = async () => {
+    const result = await adminApi.searchListOrder(dateForSearch.startDate, dateForSearch.endDate)
+    setListOfOrder(result.data.result)
+  }
 
   const searchOrderByFilter = async (startDate, endDate) => {
     try {
       const result = await adminApi.searchListOrder(startDate, endDate)
-      console.log(result.data.result)
       setListOfOrder(result.data.result)
     } catch (error) {
       console.log(error)
     }
+  }
+  const editOrderStatus = async (id, newProfileObj) => {
+    await adminApi.updateStatusOrder(id, newProfileObj)
+    fetchData()
   }
 
 
@@ -24,7 +32,9 @@ export default function SearchOrderContextProvider({ children }) {
     <SearchContext.Provider
       value={{
         listOfOrder,
-        searchOrderByFilter
+        searchOrderByFilter,
+        setDateForSearch,
+        editOrderStatus
       }}>
       {children}
     </SearchContext.Provider>

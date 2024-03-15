@@ -27,8 +27,8 @@ export default function ItemService({ order }) {
             </div>
             {isShowSent &&
                 <Modal
-                    width={20}
-                    title={"Confirm Request"}
+                    width={40}
+                    title={"Complete Service"}
                 >
                     <ConfirmService onClose={() => setShowSent(false)} order={order} />
                 </Modal>}

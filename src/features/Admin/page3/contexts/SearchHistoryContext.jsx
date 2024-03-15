@@ -2,39 +2,37 @@ import React from 'react'
 import { createContext } from 'react'
 import * as adminApi from '../../../../api/admin'
 import { useEffect } from 'react'
+import { useState } from 'react'
 
-export const searchHistoryContext = createContext()
+export const SearchHistoryContext = createContext()
 
 export default function SearchHistoryContextProvider({ children }) {
     const [listOfHistory, setListOfHistory] = useState([])
-
+    const [dateForSearch, setDateForSearch] = useState([])
     // useEffect(() => {
     //     fetchListOrder()
     // }, [])
 
-    const fetchListHistory = async () => {
-        try {
-            const resultListOrder = await adminApi.getListHistory()
-            setListOfHistory(resultListOrder)
-        } catch (error) {
 
+    const searchHistoryByFilter = async (startDate, endDate) => {
+        try {
+            const resultListOrder = await adminApi.getListHistory(startDate, endDate)
+            setListOfHistory(resultListOrder.data.result)
+        } catch (error) {
+            console.log(error)
         }
     }
 
-    const searchHistoryByFilter = async () => {
-        try {
+    const editHistory = async (id, newHistoryObj) => {
 
-        } catch (error) {
-
-        }
     }
-
 
     return (
         <SearchHistoryContext.Provider
             value={{
                 listOfHistory,
-                searchHistoryByFilter
+                searchHistoryByFilter,
+                setDateForSearch
             }}>
             {children}
         </SearchHistoryContext.Provider>

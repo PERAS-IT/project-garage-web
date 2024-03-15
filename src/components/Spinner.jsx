@@ -1,6 +1,6 @@
 export default function Spinner() {
     return (
-        <div className="absolute inset-0 translate-y-1/2" >
+        <div className="absolute inset-0 translate-y-1/2 z-40" >
 
             <span className="loading loading-spinner size-[3rem] text-orange-500" ></span >
 

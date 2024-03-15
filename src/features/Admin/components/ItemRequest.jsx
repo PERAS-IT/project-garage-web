@@ -26,10 +26,11 @@ export default function ItemRequest({ order }) {
                         onClick={() => setShowApprove(!isShowApprove)}
                     >Approve
                     </button>
-                    <button
+                    {/* <button
                         className='w-[3rem] h-[1.5rem] bg-red-500 text-sm rounded-full text-white'
                         onClick={() => setShowReject(!isShowReject)}
-                    >Reject</button>
+                    >Reject
+                    </button> */}
                 </div>
             </div>
             {isShowApprove &&

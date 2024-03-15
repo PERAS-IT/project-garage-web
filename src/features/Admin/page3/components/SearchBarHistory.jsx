@@ -1,26 +1,20 @@
 import React from 'react'
+import { useState } from 'react'
 import CardComponent from '../../../../components/CardComponents'
 import Button from '../../../../components/Button'
-import { useState } from 'react'
-import validateDate from '../Validation/validate-searchOrder'
-import useSearchOrder from '../hooks/useSearchOrder'
+import useSearchHistory from '../hooks/useSearchHistory'
+import validateDateHistory from '../Validation/validate-searchHistory'
 import { toast } from 'react-toastify'
 
+export default function SearchBarHistory() {
+    const defaultValue = {
 
-// const defaultDate = new Date()
-
-const defaultValue = {
-
-    "startDate": '',
-    "endDate": '',
-}
-
-export default function SearchBar() {
-
-    const { searchOrderByFilter, setDateForSearch } = useSearchOrder()
+        "startDate": '',
+        "endDate": '',
+    }
     const [input, setInput] = useState(defaultValue)
     const [error, setError] = useState({})
-
+    const { searchOrderByFilter, setDateForSearch, searchHistoryByFilter } = useSearchHistory()
 
 
     const handleChange = (e) => {
@@ -31,9 +25,25 @@ export default function SearchBar() {
         setInput(defaultValue)
     }
 
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        const valiDateError = validateDateHistory(input)
 
-    CarActionContext
+        if (valiDateError) return setError(valiDateError)
+        try {
+            console.log(input)
+            await searchHistoryByFilter(input.startDate, input.endDate)
 
+            setDateForSearch(input);
+            toast.success("Search Success")
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response?.data.message)
+        } finally {
+
+        }
+
+    }
     return (
         <>
             <CardComponent width={40} height={12} bg={"gray"}>

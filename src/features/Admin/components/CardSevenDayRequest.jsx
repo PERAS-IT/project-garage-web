@@ -12,7 +12,7 @@ export default function CardSevenDayRequest() {
     console.log(requestSevenDay)
     return (
         <CardComponent width={30} height={20} >
-            <div>
+            <div className='flex flex-col'>
                 <h1 className='text-[2rem]'>Request in seven day </h1>
                 <div className='w-full h-[15rem] flex flex-col gap-3 overflow-x-hidden '>
                     <BarChart chartData={requestSevenDay} />

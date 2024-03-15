@@ -11,8 +11,8 @@ export default function CarSevenDayComplete() {
     const { completeSevenDay } = useAdminContext()
     return (
         <CardComponent width={30} height={20} >
-            <div>
-                <h1 className='text-[2rem]'>Complete Work In Seven Day</h1>
+            <div className='flex flex-col'>
+                <h1 className='text-[1.7rem]'>Complete Work In Seven Day</h1>
                 <div className='w-full h-[15rem] flex flex-col gap-3 overflow-x-hidden '>
                     <div className='w-full h-[15rem] flex flex-col gap-3 overflow-x-hidden '>
                         <BarChart chartData={completeSevenDay} />

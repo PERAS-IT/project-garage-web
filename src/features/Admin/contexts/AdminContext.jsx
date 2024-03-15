@@ -18,8 +18,7 @@ export default function AdminContextProvider({ children }) {
         try {
             const resultList = await adminApi.getRequestList()
             setRequestList(resultList.data.result)
-            // const resultInSevenDay = await adminApi.getRequestInSevenDay();
-            // setRequestSevenDay(resultInSevenDay)
+
         } catch (error) {
             console.log(error)
         }
@@ -28,10 +27,9 @@ export default function AdminContextProvider({ children }) {
     const fetchService = async () => {
         try {
             const resultList = await adminApi.getServiceList();
-            console.log(resultList.data.result)
+
             setServiceList(resultList.data.result)
-            // const resultInSevenDay = await adminApi.getServiceInSevenDay();
-            // setServiceSevenDay(resultInSevenDay)
+
         } catch (error) {
             console.log(error)
         }
@@ -40,8 +38,7 @@ export default function AdminContextProvider({ children }) {
         try {
             const resultList = await adminApi.getCompleteList();
             setCompleteList(resultList.data.result)
-            // const resultInSevenDay = await adminApi.getCompleteInSevenDay();
-            // setCompleteSevenDay(resultInSevenDay)
+
         } catch (error) {
             console.log(error)
         }
@@ -82,10 +79,20 @@ export default function AdminContextProvider({ children }) {
     }
     const updateComplete = async (orderId) => {
         await adminApi.updateComplete(orderId)
+        fetchService()
         fetchComplete()
         fetchSevenDay()
     }
-
+    const createHistory = async (data, orderId) => {
+        try {
+            await adminApi.createHistory(data, orderId)
+            fetchService()
+            fetchComplete()
+            fetchSevenDay()
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <AdminContext.Provider
@@ -98,8 +105,8 @@ export default function AdminContextProvider({ children }) {
                 updateComplete,
                 requestSevenDay,
                 serviceSevenDay,
-                completeSevenDay
-
+                completeSevenDay,
+                createHistory
             }}>
             {children}
         </AdminContext.Provider>

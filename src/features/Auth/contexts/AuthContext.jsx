@@ -1,14 +1,44 @@
 import { useState } from 'react';
 import { createContext } from 'react'
 import * as authApi from "../../../api/auth"
-import { clearToken, storeToken } from '../../../utility/local-storage';
+import { clearToken, storeToken, getToken, storeTokenAdmin, clearTokenAdmin, getTokenAdmin } from '../../../utility/local-storage';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
-    const [AuthUser, setAuthUser] = useState(null)
-    const [AuthAdmin, setAuthAdmin] = useState(null)
+    const [authUser, setAuthUser] = useState(null)
+    const [authAdmin, setAuthAdmin] = useState(null)
     const [initialLoading, setInitialLoading] = useState(true)
+
+    useEffect(() => {
+        if (getToken()) {
+            authApi.fetchMe()
+                .then(res => {
+                    setAuthUser(res.data.user)
+                })
+                .catch(err => {
+                    toast.error(err.response?.data.message)
+
+                }).finally(() => setInitialLoading(false));
+
+        }
+        if (getTokenAdmin()) {
+            authApi.fetchAdmin()
+                .then(res => {
+                    setAuthAdmin(res.data.admin)
+                })
+                .catch(err => {
+                    toast.error(err.response?.data.message)
+
+                }).finally(() => setInitialLoading(false));
+        }
+        else {
+            setInitialLoading(false)
+        }
+    }, []);
+
 
     const register = async (user) => {
         const result = await authApi.register(user);
@@ -24,15 +54,16 @@ export default function AuthContextProvider({ children }) {
     const loginAdmin = async (credential) => {
         const result = await authApi.loginAdmin(credential)
         setAuthAdmin(result.data.user);
-        storeToken(result.data.accessToken)
+        storeTokenAdmin(result.data.accessToken)
     }
     const logOut = async () => {
         setAuthUser(null)
         setAuthAdmin(null)
         clearToken()
+        clearTokenAdmin()
     }
     return (
-        <AuthContext.Provider value={{ login, register, loginAdmin, logOut }}>
+        <AuthContext.Provider value={{ authUser, authAdmin, login, register, loginAdmin, logOut }}>
             {children}
         </AuthContext.Provider>
     )

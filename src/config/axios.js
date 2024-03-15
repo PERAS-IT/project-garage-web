@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "../utility/local-storage";
+import { getToken, getTokenAdmin } from "../utility/local-storage";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 

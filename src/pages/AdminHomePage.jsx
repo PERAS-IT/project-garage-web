@@ -17,22 +17,27 @@ import CardSevenDayRequest from '../features/Admin/components/CardSevenDayReques
 import CardSevenDayService from '../features/Admin/components/CardSevenDayService'
 import CarSevenDayComplete from '../features/Admin/components/CarSevenDayComplete'
 import { useState } from 'react'
-import CardComponent from '../components/CardComponents'
+
 import SearchBar from '../features/Admin/page2/components/SearchBar'
 import TableOrder from '../features/Admin/page2/components/TableOrder'
+import useAuth from '../hooks/use-auth'
+import SearchBarHistory from '../features/Admin/page3/components/SearchBarHistory'
+import TableHistory from '../features/Admin/page3/components/TableHistory'
 
 
 
 export default function AdminHomePage() {
 
     const [currentPage, setCurrent] = useState(1)
+    console.log(currentPage)
 
+    const { logOut } = useAuth()
 
     return (
         <div>
             <Header>
                 <Link to={'/login'}>
-                    <Button background={"red"} width={"md"} color={"white"}>
+                    <Button background={"red"} width={"md"} color={"white"} onClick={() => logOut()}>
                         Log out
                     </Button>
                 </Link>
@@ -43,7 +48,7 @@ export default function AdminHomePage() {
                     <div className='flex justify-around mt-5'>
                         <LinkCardAdmin image={main} title={"Dash Board"} color={"red-300"} onClick={() => setCurrent(1)} />
                         <LinkCardAdmin image={search} title={"Update Status"} onClick={() => setCurrent(2)} />
-                        <LinkCardAdmin image={History} title={"history"} onClick={() => setCurrent(2)} />
+                        {/* <LinkCardAdmin image={History} title={"history"} onClick={() => setCurrent(3)} /> */}
                     </div>
                     <div className='flex flex-col gap-8 mt-10'>
                         <div className='flex justify-center gap-8'>
@@ -69,7 +74,7 @@ export default function AdminHomePage() {
                     <div className='flex justify-around mt-5'>
                         <LinkCardAdmin image={main} title={"Dash Board"} onClick={() => setCurrent(1)} />
                         <LinkCardAdmin image={search} title={"Update Status"} color={"red-300"} onClick={() => setCurrent(2)} />
-                        <LinkCardAdmin image={History} title={"history"} onClick={() => setCurrent(3)} />
+                        {/* <LinkCardAdmin image={History} title={"history"} onClick={() => setCurrent(3)} /> */}
                     </div>
                     <div className='mt-[3rem] flex items-center flex-col'>
                         <SearchBar></SearchBar>
@@ -78,17 +83,24 @@ export default function AdminHomePage() {
                 </div>
 
             }
-            {
-                currentPage == 3 &&
+            {/* {
+                currentPage === 3 &&
                 <div>
-                    <div className='flex justify-around mt-5'>
-                        <LinkCardAdmin image={main} title={"Dash Board"} onClick={() => setCurrent(1)} />
-                        <LinkCardAdmin image={search} title={"Update Status"} onClick={() => setCurrent(2)} />
-                        <LinkCardAdmin image={History} title={"history"} color={"red-300"} onClick={() => setCurrent(3)} />
+                    <div>
+                        <div className='flex justify-around mt-5'>
+                            <LinkCardAdmin image={main} title={"Dash Board"} onClick={() => setCurrent(1)} />
+                            <LinkCardAdmin image={search} title={"Update Status"} onClick={() => setCurrent(2)} />
+                            <LinkCardAdmin image={History} title={"history"} color={"red-300"} onClick={() => setCurrent(3)} />
+                        </div>
+                    </div>
+                    <div className='mt-[3rem] flex items-center flex-col'>
+                        <SearchBarHistory />
+                        <TableHistory />
                     </div>
                 </div>
 
-            }
+
+            } */}
         </div>
     )
 }

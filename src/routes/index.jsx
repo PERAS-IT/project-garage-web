@@ -11,8 +11,8 @@ import ProtectedRoute from '../features/Auth/components/ProtectedRoute'
 import RedirectIfAuthenticatedUser from '../features/Auth/components/RedirectIfAuthenticatedUser'
 import AdminContextProvider from '../features/Admin/contexts/AdminContext'
 import ProtectedRouteAdmin from '../features/Auth/components/ProtextRouteAdmin'
-import RedirectIfAuthenticatedAdmin from '../features/Auth/components/RedirectIfAuthenticatedAdmin'
 import SearchOrderContextProvider from '../features/Admin/page2/contexts/SearchOrderContext'
+import SearchHistoryContextProvider from '../features/Admin/page3/contexts/SearchHistoryContext'
 
 const router = createBrowserRouter([
 
@@ -31,40 +31,36 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: (
-            // <RedirectIfAuthenticatedUser>
-            // <RedirectIfAuthenticatedAdmin>
-            <LoginPage />
-            // </RedirectIfAuthenticatedAdmin>
-            // </RedirectIfAuthenticatedUser>
+            <RedirectIfAuthenticatedUser>
+
+                <LoginPage />
+
+            </RedirectIfAuthenticatedUser>
+        )
+    },
+
+    {
+        path: '/user', element: (
+            <ProtectedRoute>
+                <UserPage />
+            </ProtectedRoute>
         )
     },
     {
-        path: `/`,
-        element: (
-            <Container />
-        ),
-        children: [
-
-            {
-                path: '/user', element: (
-                    // <ProtectedRoute>
-                    <UserPage />
-                    // </ProtectedRoute>
-                )
-            },
-            {
-                path: '/admin', element: (
-                    // <ProtectedRouteAdmin>
-                    <AdminContextProvider>
-                        <SearchOrderContextProvider>
+        path: '/admin', element: (
+            <ProtectedRouteAdmin>
+                <AdminContextProvider>
+                    <SearchOrderContextProvider>
+                        <SearchHistoryContextProvider>
                             <AdminHomePage />
-                        </SearchOrderContextProvider>
-                    </AdminContextProvider>
-                    // </ProtectedRouteAdmin>
-                )
-            },
-        ]
-    }])
+                        </SearchHistoryContextProvider>
+                    </SearchOrderContextProvider>
+                </AdminContextProvider>
+            </ProtectedRouteAdmin>
+        )
+    },
+
+])
 
 
 export default function Router() {

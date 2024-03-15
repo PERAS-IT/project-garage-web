@@ -128,7 +128,7 @@ export default function CarCreateForm({ onClose }) {
                                     <img
                                         src={URL.createObjectURL(image)}
                                         alt='post'
-                                        className='rounded-2xl' />
+                                        className='rounded-2xl ' />
                                     <button
                                         className='absolute top-1 right-1 font-black'>
                                         &#10005;

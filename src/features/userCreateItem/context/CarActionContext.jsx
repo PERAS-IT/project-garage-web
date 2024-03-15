@@ -4,10 +4,12 @@ import * as userCarApi from "../../../api/userCar"
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
+const defaultState = { order: { statusOrder: "" } }
 export const CarActionContext = createContext();
 export default function CarActionContextProvider({ children }) {
 
-    const [cars, setCars] = useState([]);
+    const [cars, setCars] = useState([{ orders: [{ statusOrder: "" }] }]);
+    console.log(cars)
 
     const fetchData = async () => {
         try {

@@ -10,11 +10,13 @@ import CarDeleteForm from './CarDeleteForm';
 import Modal from '../../../components/Modal';
 import CarRequestForm from './CarRequestForm';
 import CarEditForm from './CarEditForm';
+import TableHistory from './TableHistory';
 
 export default function CarCardNewCar({ car }) {
     const [isEdit, setIsEdit] = useState(true)
     const [isShowDelete, setIsShowDelete] = useState(false)
     const [isShowRequest, setIsShowRequest] = useState(false)
+    const [isShowHistory, SetIsShowHistory] = useState(false)
 
     const handleEdit = () => {
         setIsEdit(!isEdit)
@@ -49,12 +51,13 @@ export default function CarCardNewCar({ car }) {
                     </div>
                 </div>
                 <div className='flex justify-between gap-[6rem]'>
-                    <Button
+                    {/* <Button
                         background='yellow'
-                        className="bg-yellow-500">
+                        className="bg-yellow-500"
+                        onClick={() => SetIsShowHistory(!isShowHistory)}>
                         Car history
                         <BsClockHistory />
-                    </Button>
+                    </Button> */}
                     <Button
                         background='blue'
                         onClick={() => setIsShowRequest(!isShowRequest)}>
@@ -89,6 +92,15 @@ export default function CarCardNewCar({ car }) {
                         car={car} />
                 </Modal>
             }
+            {/* {
+                isShowHistory &&
+                <Modal
+                    width={40}
+                    title={"HISTORY SERVICE"}
+                >
+                    <TableHistory onClose={() => SetIsShowHistory(false)} />
+                </Modal>
+            } */}
         </>
 
     )

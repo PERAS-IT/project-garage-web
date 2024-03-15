@@ -7,4 +7,4 @@ export const requestServiceCar = (id, data) =>
   axios.post(`/service/${id}`, data);
 export const editCar = (id, data) => axios.put(`/cars/${id}`, data);
 
-export const getHistoryByCarId = (id) => axios.get("/cars/history/${id}", id);
+export const getHistoryByCarId = (id) => axios.get(`/cars/${id}`);
